@@ -1,8 +1,8 @@
-#include "../inc/get_sign.h"
+#include "../inc/get_hash.h"
 
 bool DEBUG_SIGN = false;
 
-int get_sign(string Message, int poly)
+int get_hash(string Message, int poly)
 {
     string In = Message;
     char Input[In.length()]; 

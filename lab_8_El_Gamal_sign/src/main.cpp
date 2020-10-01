@@ -14,7 +14,7 @@ int main()
     {
         Output += decrypt(transmit(encrypt(Message[i]),Input));
     }
-    cout << "Transmition success = " << Output <<endl;
+    cout << "Transmition success " << Output <<endl;
     system("pause");
     return 0;
 }

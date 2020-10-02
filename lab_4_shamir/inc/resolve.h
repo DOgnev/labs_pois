@@ -10,7 +10,7 @@ using namespace std;
 //Структура данных
 struct data
 {
-    int argument_p;
+    int divisor;
     int Ca;
     int Cb;
     int Da;
@@ -18,10 +18,10 @@ struct data
 };
 
 //Функция проверки число на простоту
-bool simplecheck(int argument_p);
+bool simple_check(int number);
 //Функция рандомного числа
-int random (int delta);
+int random(int delta);
 //Определение исходных данных
-data resolving(data Input);
+data resolve(data input);
 
 #endif

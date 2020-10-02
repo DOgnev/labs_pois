@@ -2,12 +2,12 @@
 
 bool DEBUG_RESOLVE = true;
 //Функция проверки число на простоту
-bool simplecheck(int argument_p)
+bool simple_check(int number)
 {
-    int quotient;
-    for (int i = 2; i < argument_p; i++) 
+    if ((number % 2) == 0) return false; // Если число четное, то 
+    for (int counter = 3; counter < round(sqrt(number)); counter += 2) 
     {
-        if (argument_p % i == 0)
+        if (number % counter == 0)
         {
             return false;
         }
@@ -15,54 +15,53 @@ bool simplecheck(int argument_p)
     return true;
 };
 
-int random (int delta)
+int random(int delta)
 {
-    int Q;
+    int divisor_q;
     srand(time(0));
-    Q = delta / 10 + (rand()%delta);
-    while(!simplecheck(Q))
+    divisor_q = delta / 10 + (rand() % delta);
+    while(!simple_check(divisor_q))
     {
-        Q = delta / 10 + (rand()%delta);
+        divisor_q = delta / 10 + (rand() % delta);
     }
-    return Q;
+    return divisor_q;
 }
 
 //Определение исходных данных
-data resolving(data Input)
+data resolve(data input)
 {
     
-    while (!((Input.Da > 1) && (Input.Db > 1)))
+    while (!((input.Da > 1) && (input.Db > 1)))
     {
-        int Q;
-        ext_nod_exit Invertion_a, Invertion_b;
-        Input.argument_p = 4;
-        while (!simplecheck(Input.argument_p))
+        int divisor_q;
+        ext_nod_exit invertion_a, invertion_b;
+        input.divisor = 4;
+        while (!simple_check(input.divisor))
         {
             {
-                Q = random(500);
+                divisor_q = random(500);
             }
-            Input.argument_p = 2 * Q + 1;
+            input.divisor = 2 * divisor_q + 1;
         }
-        Input.Ca = 0;
-        Input.Cb = 0;
+        input.Ca = 0;
+        input.Cb = 0;
 
-        while (!((Input.Ca != Input.Cb) && (Invertion_a.NOD == 1) && (Invertion_b.NOD == 1) && (Input.Ca < Input.argument_p - 1) && (Input.Cb < Input.argument_p - 1) && (Input.Ca > 0) && (Input.Cb > 0)))
+        while (!((input.Ca != input.Cb) && (invertion_a.gcd == 1) && (invertion_b.gcd == 1) && (input.Ca < input.divisor - 1) && (input.Cb < input.divisor - 1) && (input.Ca > 0) && (input.Cb > 0)))
         {
-            Input.Ca = random(Input.argument_p - 1);
-            Input.Cb = random(Input.argument_p - 1);
-            Invertion_a = ext_nod(Input.argument_p - 1, Input.Ca);
-            Invertion_b = ext_nod(Input.argument_p - 1, Input.Cb);
+            input.Ca = random(input.divisor - 1);
+            input.Cb = random(input.divisor - 1);
+            invertion_a = ext_gcd(input.divisor - 1, input.Ca);
+            invertion_b = ext_gcd(input.divisor - 1, input.Cb);
         }
-            Input.Da = Invertion_a.y < 0 ? (Invertion_a.y + (Input.argument_p - 1)) : Invertion_a.y;
-            Input.Db = Invertion_b.y < 0 ? (Invertion_b.y + (Input.argument_p - 1)) : Invertion_b.y;
+            input.Da = invertion_a.number_invertion < 0 ? (invertion_a.number_invertion + (input.divisor - 1)) : invertion_a.number_invertion;
+            input.Db = invertion_b.number_invertion < 0 ? (invertion_b.number_invertion + (input.divisor - 1)) : invertion_b.number_invertion;
         }
-    if (DEBUG_RESOLVE == true)
-    {
-        cout << "[DEBUG_RESOLVE]: P = " << Input.argument_p << endl;
-        cout << "[DEBUG_RESOLVE]: Ca = " << Input.Ca << endl;
-        cout << "[DEBUG_RESOLVE]: Cb = " << Input.Cb << endl;
-        cout << "[DEBUG_RESOLVE]: Da = " << Input.Da << endl;
-        cout << "[DEBUG_RESOLVE]: Db = " << Input.Db << endl;
-    }
-    return Input;
+
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG_RESOLVE]: p = " << input.divisor << endl : cout << endl;
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG_RESOLVE]: Ca = " << input.Ca << endl : cout << endl;
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG_RESOLVE]: Cb = " << input.Cb << endl : cout << endl;
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG_RESOLVE]: Da = " << input.Da << endl : cout << endl;
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG_RESOLVE]: Db = " << input.Db << endl : cout << endl;
+ 
+    return input;
 }

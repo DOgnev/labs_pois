@@ -1,30 +1,25 @@
 #include "../inc/fastpow.h"
 
-bool DEBUG_FASTPOW_MAIN = false;
+bool DEBUG_MAIN = false; // чекер дебага
 
 int main()
 {
-    int a, x, p, result;
-    cout << "Solve: pow(a,x) mod p " << endl;
-    cout << "Expect a " << endl;
+    int base = 1, index = 1, divisor = 1, result = 1;
+    cout << "Enter base" << endl;
     // Получаем основание   
-    cin >> a; 
-    cout << "Expect x " << endl;
+    cin >> base; 
+    cout << "Enter index" << endl;
     // Получаем показатель
-    cin >> x;
-    cout << "Expect p " <<endl;
+    cin >> index;
+    cout << "Enter divisor" <<endl;
     // Получаем делитель
-    cin >> p;
+    cin >> divisor;
     // Вычисляем
-    result = fastpow(a ,x ,p);
-    if (DEBUG_FASTPOW_MAIN == true)
-    {
-        cout << "[DEBUG_FASTPOW main]: a= " << a << endl;
-        cout << "[DEBUG_FASTPOW main]: x= " << x << endl;
-        cout << "[DEBUG_FASTPOW main]: p= " << p << endl;
-        cout << "[DEBUG_FASTPOW main]: Result= " << result << endl;
-    }
-    cout << " Result: " << result << endl;  
+    result = fastpow(base, index, result);
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: base= " << base << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: index= " << index << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: divisor= " << divisor << endl : cout << endl;
+    cout << "[MAIN]: result = " << result << endl;  
     system("pause");
     return 0;
 }

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//Вычисление остатка от деления числа а в степени х на число р
-int fastpow(int argument_a, int argument_x, int argument_p);
+//Определяем значение выражения base^index mod divisor.
+int fastpow(int base, int index, int divisor);
 
 #endif

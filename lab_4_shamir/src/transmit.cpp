@@ -2,38 +2,37 @@
 
 bool DEBUG_TRANSMIT = true;
 
-int transmit(int Message, data Input)
+int transmit(int message, data input)
 {
-    int X1, X2, X3, X4;
+    int step_1, step_2, step_3, step_4;
     while(true)
     {
-        X1 = fastpow(Message, Input.Ca, Input.argument_p);
-        X2 = fastpow(X1, Input.Cb, Input.argument_p);
-        X3 = fastpow(X2, Input.Da, Input.argument_p);
-        X4 = fastpow(X3, Input.Db, Input.argument_p);
+        step_1 = fastpow(message, input.Ca, input.divisor);
+        step_2 = fastpow(step_1, input.Cb, input.divisor);
+        step_3 = fastpow(step_2, input.Da, input.divisor);
+        step_4 = fastpow(step_3, input.Db, input.divisor);
         
-        cout << "Transmitting A to B [itter 1]. X1: "<< X1 << endl;
-        cout << "Transmitting B to A [itter 2]. X2: "<< X2 << endl;
-        cout << "Transmitting A to B [itter 3]. X3: "<< X3 << endl;
-        cout << "Solve message [itter 4]. X4: "<< X4 << endl;
+        cout << "Transmitting A to B [itter 1]. step_1: "<< step_1 << endl;
+        cout << "Transmitting B to A [itter 2]. step_2: "<< step_2 << endl;
+        cout << "Transmitting A to B [itter 3]. step_3: "<< step_3 << endl;
+        cout << "Solve message [itter 4]. step_4: "<< step_4 << endl;
 
         if (DEBUG_TRANSMIT == true)
         {
-            cout << "[DEBUG transmit]: Mess= " << Message << endl;
-            cout << "[DEBUG transmit]: X1= " << X1 << endl;
-            cout << "[DEBUG transmit]: X2= " << X2 << endl;
-            cout << "[DEBUG transmit]: X3= " << X3 << endl;
-            cout << "[DEBUG transmit]: X4= " << X4 << endl;
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG transmit]: message= " << message << endl : cout << endl;
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG transmit]: step_1= " << step_1 << endl : cout << endl;
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG transmit]: step_2= " << step_2 << endl : cout << endl;
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG transmit]: step_3= " << step_3 << endl : cout << endl;
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG transmit]: step_4= " << step_4 << endl : cout << endl;
         }
 
-        if (X4 == Message)
+        if (step_4 == message)
         {
             cout << "Transmit Succesfull" << endl;
-            return X4;
+            return step_4;
         } else {
             cout << "Transmit failed" << endl;
-              Input = resolving (Input);
+              input = resolve(input);
         }
     }
-
 }

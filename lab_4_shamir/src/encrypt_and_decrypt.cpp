@@ -1,13 +1,13 @@
 #include "../inc/encrypt_and_decrypt.h"
 
 //Возвращение значения ASCII 
-int encrypt(char Input)
+int encrypt(char input)
 {
-    return (int) Input;
+    return (int) input;
 }
 
 //Возвращение символа по ASCII 
-char decrypt(int Input)
+char decrypt(int input)
 {
-    return (char) Input;
+    return (char) input;
 }

@@ -4,26 +4,22 @@ bool DEBUG_MAIN = false;
 
 int main()
 {
-    data Input;
-     //Функция динамической рандомизации
+    data input;
     //Ожидание входных данных
     cout << "Resolving" << endl;
-    Input = resolving(Input);
-    cout << " [Main] Argument P = " << Input.argument_p << endl;
-    cout << " [Main] Argument G = " << Input.argument_g << endl;
-    cout << " [Main] Argument Xa = " << Input.Xa << endl;
-    cout << " [Main] Argument Xb = " << Input.Xb << endl;
-    cout << " [Main] Argument Ya = " << Input.Ya << endl;
-    cout << " [Main] Argument Yb = " << Input.Yb << endl;
-    cout << " [Main] Argument Za = " << Input.Za << endl;
-    cout << " [Main] Argument Zb = " << Input.Zb << endl;
-    if (Input.Za == Input.Zb)
-    {
-        cout << " [Main] Transmition is success" << endl;
-    } else 
-    {
-        cout << " [Main] Transmition is failed" << endl;
-    }
+    //Определение параметров. Вычисление ответа.
+    input = resolve(input);
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: divisor= " << input.divisor << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: base= " << input.base << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: Xa= " << input.Xa << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: Xb= " << input.Xb << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: Ya= " << input.Ya << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: Yb= " << input.Yb << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: Zab= " << input.Za << endl : cout << endl;
+    (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: Zba= " << input.Zb << endl : cout << endl;
+
+    if (input.Za == input.Zb) cout << " [MAIN]: Transmition is success" << endl;
+    else cout << " [MAIN]: Transmition is failed" << endl;
     system("pause");
     return 0;
 }

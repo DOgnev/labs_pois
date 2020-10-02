@@ -2,13 +2,13 @@
 
 using namespace std;
 
-//Функция проверки число на простоту
-bool simplecheck(int argument_p)
+//Функция проверки что число простое
+bool simple_check(int number)
 {
-    int quotient;
-    for (int i = 2; i < argument_p; i++) 
+    if ((number % 2) == 0) return false; // Если число четное, то 
+    for (int counter = 3; counter < round(sqrt(number)); counter += 2) 
     {
-        if (argument_p % i == 0 && argument_p == i)
+        if (number % counter == 0)
         {
             return false;
         }
@@ -17,39 +17,38 @@ bool simplecheck(int argument_p)
 };
 
 //Определение исходных данных
-data resolving(data Input)
+data resolve(data input)
 {
     srand(time(NULL));
-    int Q;
-    Q = (100 + rand() % 400);
-    Input.argument_p = 2 * Q + 1;
-    while (!simplecheck(Input.argument_p))
+    int divisor_q;
+    divisor_q = (100 + rand() % 400);
+    input.divisor = 2 * divisor_q + 1;
+    while (!simple_check(input.divisor))
     {
-        while (!simplecheck(Q))
+        while (!simple_check(divisor_q))
         {
-            Q = (100 + rand() % 400);
+            divisor_q = (100 + rand() % 400);
         }
-        Input.argument_p = 2 * Q + 1;
+        input.divisor = 2 * divisor_q + 1;
     }
-    Input.argument_g = (100 + rand() % Input.argument_p - 1);
-    while (!(fastpow(Input.argument_g, Q, Input.argument_p) != 1) && (Input.argument_g < Input.argument_p - 1) && (Input.argument_g > 0))
+    input.base = (100 + rand() % input.divisor - 1);
+    while (!(fastpow(input.base, divisor_q, input.divisor) != 1) && (input.base < input.divisor - 1) && (input.base > 0))
     {
-        Input.argument_g = (100 + rand() % Input.argument_p - 1);
+        input.base = (100 + rand() % input.divisor - 1);
     }
-    Input.Xa = (100 + rand() % Input.argument_p)* 2;
-    Input.Xb = (100 + rand() % Input.argument_p)* 2;
+    input.Xa = (100 + rand() % input.divisor)* 2;
+    input.Xb = (100 + rand() % input.divisor)* 2;
 
-    while(Input.Xa == Input.Xb)
+    while(input.Xa == input.Xb)
     {
-        cout << "[VALIDATION]: key Xa == Xb, rerandomize" << endl;
-        Input.Xb = (100 + rand() % Input.argument_p) * 2;
+        input.Xb = (100 + rand() % input.divisor) * 2;
     }
 
-    Input.Ya = fastpow(Input.argument_g,Input.Xa,Input.argument_p);
-    Input.Yb = fastpow(Input.argument_g,Input.Xb,Input.argument_p);
+    input.Ya = fastpow(input.base,input.Xa,input.divisor);
+    input.Yb = fastpow(input.base,input.Xb,input.divisor);
 
-    Input.Za = fastpow(Input.Yb,Input.Xa,Input.argument_p);
-    Input.Zb = fastpow(Input.Ya,Input.Xb,Input.argument_p);
+    input.Za = fastpow(input.Yb,input.Xa,input.divisor);
+    input.Zb = fastpow(input.Ya,input.Xb,input.divisor);
 
-    return Input;
+    return input;
 }

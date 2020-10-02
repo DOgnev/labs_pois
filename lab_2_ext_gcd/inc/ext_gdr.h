@@ -5,14 +5,21 @@
 
 using namespace std;
 
-//Вычисляется значение инверсии исходя из обобщенного алгоритма Евклида;
+struct ext_nod_data
+{
+    int gcd;
+    int divisor;
+    int number;
+};
+
 struct ext_nod_exit
 {
-    int a1;
-    int a2;
-    int a3;
+    int gcd;
+    int divisor_invertion;
+    int number_invertion;
 };
- 
-ext_nod_exit ext_nod(int a, int b);
+
+//Вычисляется значение инверсии исходя из обобщенного алгоритма Евклида;
+ext_nod_exit ext_gcd(int divisor, int number);
 
 #endif

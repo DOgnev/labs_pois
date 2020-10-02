@@ -1,22 +1,18 @@
 #include "../inc/ext_gdr.h"
 
-using namespace std;
-//Чекер для дебага
-bool DEBUG_EXT = false;
+bool DEBUG_EXT = false; // Чекер дебага
  
-ext_nod_exit ext_nod(int a, int b)
+ext_nod_exit ext_gcd(int divisor, int number) // Функция вычисляет значение НОД чисел divisor и number, а также находит их инверсии.
 {
-    ext_nod_exit U = {a, 1, 0}, V = {b, 0, 1};
-    while (V.a1 != 0)
+    if(divisor < number) return {0,0,0}; //Если divisor < number, тогда выходим с занулением ответа;
+    ext_nod_data U = {divisor, 1, 0}, V = {number, 0, 1};
+    while (V.gcd != 0)
     {
-        int q = U.a1 / V.a1;
-        ext_nod_exit T = {U.a1 % V.a1, U.a2 - q * V.a2, U.a3 - q * V.a3};
+        int integer_part = U.gcd / V.gcd;
+        ext_nod_data T = {U.gcd % V.gcd, U.divisor - integer_part * V.divisor, U.number - integer_part * V.number};
         U = V;
         V = T;
     }
-    if (DEBUG_EXT == true)
-    {
-        cout << "[DEBUG NOD]: U= " << U.a1 << U.a2 << U.a3 << endl;
-    }
-    return U;
+    (DEBUG_EXT == true) ? cout << "[DEBUG|EXT_GDR]: U= " << U.gcd << U.divisor << U.number << endl : cout << endl;
+    return {U.gcd,U.divisor,U.number};
 }

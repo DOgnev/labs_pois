@@ -3,40 +3,15 @@
 int main()
 {
     ext_nod_exit RESULT;
-    int c, m;
-    bool DEBUG_MAIN = false;
-    cout << "Solve d in: cd mod m = 1" << endl;
-    cout << "Expect c " << endl;
-    cin >> c;
-    cout << "Expect m " << endl;
-    cin >> m;
-    if (m > 0 && c > 0)
-    {
-        if (m >= c)
-        {
-            RESULT = ext_nod(m,c);
-            if (RESULT.a2 < 0)
-            {
-                RESULT.a2 += m;
-            } 
-        } else {
-            RESULT = ext_nod(c,m);
-            if (RESULT.a2 < 0)
-            {
-                RESULT.a2 += c;
-            } 
-        }
-    } else {
-        cout << "ERROR" << endl;
-    }
-    if (DEBUG_MAIN == true)
-    {
-        cout << "[DEBUG main]: c= " << c << endl;
-        cout << "[DEBUG main]: m= " << m << endl;
-        cout << " Result x [ext_nod]: " << RESULT.a2 << endl; 
-        cout << " Result nod [ext_nod]: " << RESULT.a1 << endl;    
-    }
-    cout << " Result y [ext_nod]: " << RESULT.a3 << endl;
+    int number, divisor;
+    cout << "[MAIN]: Searching invertion to c (d): number * number_a_invertion mod divisor = 1, !!! number must be less than divisor !!!" << endl;
+    cout << "[MAIN]: Enter number " << endl;
+    cin >> number;
+    cout << "[MAIN]: Enter divisor " << endl;
+    cin >> divisor;
+    if (number > 0 && divisor > 0) ext_gcd(number, divisor);
+    else cout << "[ERROR]: number or divisor must be more than 0" << endl;
+    RESULT.gcd == 0 ? cout << "[ERROR]: divisor must be less than number" << endl : cout << "[MAIN]: number_invertion= "<< RESULT.number_invertion << endl;
     system("pause");
     return 0;
 }

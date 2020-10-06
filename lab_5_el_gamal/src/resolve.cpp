@@ -64,11 +64,11 @@ data resolve(data input)
         input.K = random(input.divisor - 1);
     }
     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
-    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: P: " << input.divisor << endl : cout << endl;
-    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: G: " << input.base << endl : cout << endl;
-    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: X: " << input.X << endl : cout << endl;
-    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Y: " << input.Y << endl : cout << endl;
-    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: K: " << input.K << endl : cout << endl;
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: P: " << input.divisor << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: G: " << input.base << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: X: " << input.X << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Y: " << input.Y << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: K: " << input.K << endl : cout << "";
     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
     return input;
 }

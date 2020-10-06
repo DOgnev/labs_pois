@@ -59,11 +59,11 @@ data resolve(data input)
             input.Db = invertion_b.number_invertion < 0 ? (invertion_b.number_invertion + (input.divisor - 1)) : invertion_b.number_invertion;
         }
         //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
-        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: P: " << input.divisor << endl : cout << endl;
-        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Ca: " << input.Ca << endl : cout << endl;
-        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Cb: " << input.Cb << endl : cout << endl;
-        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Da: " << input.Da << endl : cout << endl;
-        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Db: " << input.Db << endl : cout << endl;
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: P: " << input.divisor << endl : cout << "";
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Ca: " << input.Ca << endl : cout << "";
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Cb: " << input.Cb << endl : cout << "";
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Da: " << input.Da << endl : cout << "";
+        (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Db: " << input.Db << endl : cout << "";
         //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
     return input;
 }

@@ -61,7 +61,7 @@ data resolve(data input, int delta)
     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
     (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: P: " << input.divisor_p << endl : cout << "";
     (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Q: " << input.divisor_q << endl : cout << "";
-    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: N: " << input.N << endl : cout << endl;
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: N: " << input.N << endl : cout << "";
     (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Phi: " << input.phi << endl : cout << "";
     (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: C: " << input.C << endl : cout << "";
     (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: D: " << input.D << endl : cout << "";

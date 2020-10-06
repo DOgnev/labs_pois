@@ -19,9 +19,9 @@ int fastpow(int base, int index, int divisor)
         curent_multiplier *= curent_multiplier; 
         curent_multiplier %= divisor;
         //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
-        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: last_bit= " << last_bit << endl : cout << endl;
-        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: curent_multiplier= " << curent_multiplier << endl : cout << endl;
-        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: curent_result= " << curent_result << endl : cout << endl;
+        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: last_bit= " << last_bit << endl : cout << "";
+        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: curent_multiplier= " << curent_multiplier << endl : cout << "";
+        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: curent_result= " << curent_result << endl : cout << "";
         //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
         index >>= 1; // Битовый сдвиг на 1 разряд вправо
     }

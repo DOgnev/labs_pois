@@ -3,7 +3,7 @@
 int main()
 {
     string trd_message, rcd_message;
-    cout << "[MAIN] Waiting for message. *HINT: symbols: \'$\', \'!\' are banned" << endl;
+    cout << "[MAIN] Waiting for message. *HINT: symbols: \'$\', \'!\', \' \' are banned" << endl;
     cin >> trd_message;
     rcd_message = parse_input_block(trd_message);
     cout << "[MAIN] Message recieved successfull: " << rcd_message << ", comparing." << endl;

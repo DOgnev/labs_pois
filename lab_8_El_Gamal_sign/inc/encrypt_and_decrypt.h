@@ -3,10 +3,10 @@
 
 using namespace std;
 
-//Возвращение значения ASCII 
-int encrypt(char Input);
+//Возвращение значения десятичного ASCII кода
+int encrypt(char input);
 
-//Возвращение символа по ASCII 
-char decrypt(int Input);
+//Возвращение символа по ASCII коду 
+char decrypt(int input);
 
 #endif

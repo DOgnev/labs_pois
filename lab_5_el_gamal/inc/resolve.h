@@ -10,20 +10,20 @@ using namespace std;
 //Структура данных
 struct data
 {
-    int argument_p;
-    int argument_g;
+    int divisor;
+    int base;
     int X;
     int Y;
     int K;
 };
 
 //Функция проверки число на простоту
-bool simplecheck(int argument_p);
+bool simple_check(int number);
 
-//Функция рандомного числа
-int random (int delta);
+//Генерация случайного числа
+int random(int delta);
 
 //Определение исходных данных
-data resolving(data Input);
+data resolve(data input);
 
 #endif

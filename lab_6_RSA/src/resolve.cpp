@@ -2,12 +2,12 @@
 
 bool DEBUG_RESOLVE = true;
 //Функция проверки число на простоту
-bool simplecheck(int argument_p)
+bool simple_check(int number)
 {
-    int quotient;
-    for (int i = 2; i < argument_p; i++) 
+    if ((number % 2) == 0) return false; // Если число четное, то 
+    for (int counter = 3; counter < round(sqrt(number)); counter += 2) 
     {
-        if (argument_p % i == 0)
+        if (number % counter == 0)
         {
             return false;
         }
@@ -17,49 +17,51 @@ bool simplecheck(int argument_p)
 
 int random (int delta)
 {
-    int Q;
+    int divisor_Q;
     srand(time(0));
-    Q = delta / 10 + (rand()%delta);
-    while(!simplecheck(Q))
+    divisor_Q = delta / 10 + (rand() % delta);
+    while(!simple_check(divisor_Q))
     {
-        Q = delta / 10 + (rand()%delta);
+        divisor_Q = delta / 10 + (rand() % delta);
     }
-    return Q;
+    return divisor_Q;
 }
 
 //Определение исходных данных
-data resolving(data Input)
+data resolve(data input)
 {
-    
-    while (!(Input.D > 1))
+    while (!(input.D > 1))
     {
-        ext_nod_exit Invertion;
-        Input.argument_p = 4;
-        while (!simplecheck(Input.argument_p))
+        ext_nod_exit invertion;
+        input.divisor_p = 4;
+        //Ищем пару Q и P, такие, что P = 2 * Q + 1 и P,Q - простые
+        while (!simple_check(input.divisor_p))
         {
             {
-                Input.argument_q = random(200);
+                input.divisor_q = random(200);
             }
-            Input.argument_p = 2 * Input.argument_q + 1;
+            input.divisor_p = 2 * input.divisor_q + 1;
         }
-        Input.N = Input.argument_p * Input.argument_q;
-        Input.phi = ((Input.argument_p - 1) * (Input.argument_q - 1));
-
-        while (!( (Invertion.NOD == 1) && (Input.C < Input.phi) && (Input.C > 0)))
+        //Определяем N 
+        input.N = input.divisor_p * input.divisor_q;
+        //Определяем phi
+        input.phi = ((input.divisor_p - 1) * (input.divisor_q - 1));
+        //Ищем C, такое, что gcd(C,phi) = 1 и 0 < C < phi
+        while (!( (invertion.gcd == 1) && (input.C < input.phi) && (input.C > 0)))
         {
-            Input.C = random(Input.phi);
-            Invertion = ext_nod(Input.phi, Input.C);
+            input.C = random(input.phi);
+            invertion = ext_gcd(input.phi, input.C);
         }
-            Input.D = Invertion.y < 0 ? (Invertion.y + Input.phi) : Invertion.y;
-        }
-    if (DEBUG_RESOLVE == true)
-    {
-        cout << "[DEBUG_RESOLVE]: P = " << Input.argument_p << endl;
-        cout << "[DEBUG_RESOLVE]: Q = " << Input.argument_q << endl;
-        cout << "[DEBUG_RESOLVE]: N= " << Input.N << endl;
-        cout << "[DEBUG_RESOLVE]: phi = " << Input.phi << endl;
-        cout << "[DEBUG_RESOLVE]: C = " << Input.C << endl;
-        cout << "[DEBUG_RESOLVE]: D = " << Input.D << endl;
+        //Ищем D, такое, что C * D mod phi = 1
+        input.D = invertion.number_invertion < 0 ? (invertion.number_invertion + input.phi) : invertion.number_invertion;
     }
-    return Input;
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: P: " << input.divisor_p << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Q: " << input.divisor_q << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: N: " << input.N << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Phi: " << input.phi << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: C: " << input.C << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: D: " << input.D << endl : cout << "";
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    return input;
 }

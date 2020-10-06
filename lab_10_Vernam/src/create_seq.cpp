@@ -2,66 +2,85 @@
     
 int random (int min, int max)
 {
-    int Q;
+    int number;
     mt19937 gen(time(0));
     uniform_int_distribution<> dist(min, max);
-    Q = dist(gen);
-    return Q;
+    number = dist(gen);
+    return number;
 }
 
-//Определяем значение остатка для заданного числа
+//Определяем последовательность. Последовательность представлена неповторяющимеся символами A-Za-z.
 string sequence_creator(int length)
 {
-    string Result = "";
-    int Sequence[length];
-    for (int i = 0; i < length; i++)
+    string result = "";
+    int sequence[length];
+    for (int counter = 0; counter < length; counter++)
     {
-        Sequence[i] = 0;
+        sequence[counter] = 0;
     }
-    for (int i = 0; i < length; i++)
+    for (int counter = 0; counter < length; counter++)
     {
         if (random(0,1) == 0)
         {
             while (true)
             {
-                int Qurent = random(65,90);
-                int k = 0;
-                while (!((Sequence[k] == 0) || (Qurent == Sequence[k]) || (k == length)))
+                int qurent = random(65,90);
+                int counter = 0;
+                while (!((sequence[counter] == 0) || (qurent == sequence[counter]) || (counter == length)))
                 {
-                    k++;
+                    counter++;
                 }
-                if (Sequence[k] == 0)
+                if (sequence[counter] == 0)
                 {
-                    Sequence[k] = Qurent;
+                    sequence[counter] = qurent;
                     break;
-                } else if (k == length)
+                } else if (counter == length)
                 {
                     break;
                 }
             }
-        } else {
+        } else 
+        {
             while (true)
             {
-                int k = 0;
-                int Qurent = random(97,122);
-                while (!((Sequence[k] == 0) || (Qurent == Sequence[k]) || (k == length)) )
+                int counter = 0;
+                int qurent = random(97,122);
+                while (!((sequence[counter] == 0) || (qurent == sequence[counter]) || (counter == length)) )
                 {
-                    k++;
+                    counter++;
                 }
-                if (Sequence[k] == 0)
+                if (sequence[counter] == 0)
                 {
-                    Sequence[k] = Qurent;
+                    sequence[counter] = qurent;
                     break;
-                } else if (k == length)
+                } else if (counter == length)
                 {
                     break;
                 }
             }
         }
     }
-    for (int i = 0; i < length; i++)
+    for (int counter = 0; counter < length; counter++)
     {
-        Result += (char) Sequence[i];
+        result += (char) sequence[counter];
     }
-    return Result;
+    return result;
+}
+//Функция проверки длины строки, если строка более 40 символов, тогда генерируем новую несколько раз.
+string prevalidation (int length)
+{
+    int counter;
+    string resolve="";
+    if (length / 40 == 0)
+    {
+        return sequence_creator(length);
+    } else 
+    {
+        for (counter = 0; counter < length / 40; counter++)
+        {
+            resolve += sequence_creator(40);
+        }
+        resolve += sequence_creator(length % 40);
+        return resolve;
+    }
 }

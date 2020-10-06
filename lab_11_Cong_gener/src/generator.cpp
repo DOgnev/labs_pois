@@ -5,38 +5,38 @@ bool DEBUG_GENERATOR = true;
 //Определяем последовательность по заданному семени
 string generator(int seed)
 {
-    string RESULT = "";
-    generator_key KEY = {1,1,4,1};
-    cout << "generating params. Enter sequence length" << endl;
-    cin >> KEY.number;
-    KEY.number = KEY.number < 5 ? KEY.number = 5 : KEY.number;
-    cout << "Parsing" << endl;
-    while(!simplecheck(KEY.C))
+    string result = "";
+    generator_key key = {1,1,4,1};
+    cout << "[GENERATOR]: Generating params. Enter sequence length" << endl;
+    cin >> key.number;
+    key.number = key.number < 5 ? key.number = 5 : key.number;
+    cout << "[GENERATOR]: Parsing" << endl;
+    //Генерируем A, B, C параметры
+    while(!simple_check(key.C))
     {
-        KEY.C = random(500);
+        key.C = random(500);
     }
-    while (!((gcd(KEY.C, KEY.B) == 1) && (KEY.B != 1) && (KEY.B < KEY.C - 1)))
+    while (!((gcd(key.C, key.B) == 1) && (key.B != 1) && (key.B < key.C - 1)))
     {
-        KEY.B = random(500);
+        key.B = random(500);
     }
-    while (!((KEY.A < KEY.C) && (KEY.A != 1)))
+    while (!((key.A < key.C) && (key.A != 1)))
     {
-        KEY.A = random(50);
+        key.A = random(50);
     }
-    if (DEBUG_GENERATOR == true)
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    (DEBUG_GENERATOR == true) ? cout << "[DEBUG|GENERATOR]: A: " << key.A << endl : cout << "";
+    (DEBUG_GENERATOR == true) ? cout << "[DEBUG|GENERATOR]: B: " << key.B << endl : cout << "";
+    (DEBUG_GENERATOR == true) ? cout << "[DEBUG|GENERATOR]: C: " << key.C << endl : cout << "";
+    (DEBUG_GENERATOR == true) ? cout << "[DEBUG|GENERATOR]: seed: " << seed << endl : cout << "";
+    (DEBUG_GENERATOR == true) ? cout << "[DEBUG|GENERATOR]: number: " << key.number << endl : cout << "";
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    int tmp = (key.A * seed + key.B) % key.C;
+    for (int i = 0; i < key.number; i++)
     {
-        cout << "KEY.A = " << KEY.A << endl;
-        cout << "KEY.B = " << KEY.B << endl;
-        cout << "KEY.C = " << KEY.C << endl;
-        cout << "seed = " << seed << endl;
-        cout << "KEY.NUMBER = " << KEY.number << endl;
+        tmp = (key.A * tmp + key.B) % key.C;
+        result += to_string(tmp) + " ";
     }
-    int tmp = (KEY.A * seed + KEY.B) % KEY.C;
-    for (int i = 0; i < KEY.number; i++)
-    {
-        tmp = (KEY.A * tmp + KEY.B) % KEY.C;
-        RESULT += to_string(tmp) + " ";
-    }
-    RESULT += "!";
-    return RESULT;
+    result += "!";
+    return result;
 }

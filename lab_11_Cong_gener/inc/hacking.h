@@ -13,9 +13,11 @@ struct hacked_key
     int B;
     int C;
 };
-
-int str_to_int(string str);
-string take_U_seq(string Sequence);
-hacked_key hacking(string U);
+//Пробрасываем строку в целое число
+int str_to_int(string string);
+//Забираем строку от генератора заданной длины
+string take_seq(string sequence);
+//Взламываем полученную последовательность
+hacked_key hacking(string stolen_sequence);
 
 #endif

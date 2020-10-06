@@ -7,5 +7,6 @@
 
 using namespace std;
 
-int transmit(int Message, data Input);
+//Функция передачи
+int transmit(int message, data input);
 #endif

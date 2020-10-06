@@ -8,11 +8,12 @@
 #include "ext_gdr.h"
 
 using namespace std;
+
 //Структура данных
 struct data
 {
-    int argument_p;
-    int argument_q;
+    int divisor_p;
+    int divisor_q;
     int N;
     int phi;
     int C;
@@ -20,10 +21,12 @@ struct data
 };
 
 //Функция проверки число на простоту
-bool simplecheck(int argument_p);
+bool simple_check(int number);
+
 //Функция рандомного числа
 int random (int delta);
+
 //Определение исходных данных
-data resolving(data Input, int delta);
+data resolve(data input, int delta);
 
 #endif

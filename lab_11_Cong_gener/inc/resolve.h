@@ -10,9 +10,11 @@ using namespace std;
 //Структура данных
 
 //Функция проверки число на простоту
-bool simplecheck(int argument_p);
+bool simple_check(int number);
+
 //Функция рандомного числа
 int random (int delta);
+
 //Функция нахождения НОД
 int gcd(int a, int b);
 

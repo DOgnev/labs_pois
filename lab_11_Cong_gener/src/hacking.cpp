@@ -1,30 +1,30 @@
 #include "../inc/hacking.h"
 
 //Парсер строки в число
-int str_to_int(string str)
+int str_to_int(string string)
 {
-    stringstream sstr;
-    int int_val;
-    if (str.empty())
+    stringstream stream_string;
+    int integer_value;
+    if (string.empty())
     {
         return 0;
     }
-    sstr << str;
-    sstr >> int_val;
-    return int_val;
+    stream_string << string;
+    stream_string >> integer_value;
+    return integer_value;
 }
 
 //Определяем последовательность по заданному семени
-string take_U_seq(string Sequence)
+string take_seq(string sequence)
 {
     string number, U;
     int q = 0, T1, T2, T3, S1, S2, S3, S4, t, tmp;
     number = "";
         for (int i = 0; i < 4; i++)
         {
-            while(Sequence[q] != ' ')
+            while(sequence[q] != ' ')
             {
-                number += Sequence[q];
+                number += sequence[q];
                 q++;
             }
             S1 = i == 0 ? str_to_int(number): S1;
@@ -40,14 +40,14 @@ string take_U_seq(string Sequence)
     t = S3;
     tmp = abs((T2*T2)-(T1*T3));
     U += to_string(tmp) + " ";
-    while (Sequence[q] != '!')
+    while (sequence[q] != '!')
     {
         T1 = T2;
         T2 = T3;
         S3 = S4;
-        while(Sequence[q] != ' ')
+        while(sequence[q] != ' ')
         {
-            number += Sequence[q];
+            number += sequence[q];
             q++;
         }
         S4 = str_to_int(number);

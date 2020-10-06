@@ -1,21 +1,21 @@
 #include "../inc/transmit.h"
 
-transmiting_data solve_encrypt(transmiting_data Input)
+transmiting_data solve_encrypt(transmiting_data input)
 {
-    Input.ENCRYPT = "";
-    for (int i = 0; i < Input.MESSAGE.length(); i++)
+    input.encrypt = "";
+    for (int counter = 0; counter < input.message.length(); counter++)
     {
-        Input.ENCRYPT += (char) bitsumm((int) Input.MESSAGE[i],(int) Input.KEY[i]);
+        input.encrypt += (char) bitsumm((int) input.message[counter],(int) input.key[counter]);
     }
-    return Input;
+    return input;
 }
 
-string solve_message(transmiting_data Input)
+string solve_message(transmiting_data input)
 {
-    string MESSAGE_RES = "";
-    for (int i = 0; i < Input.ENCRYPT.length(); i++)
+    string message_res = "";
+    for (int counter = 0; counter < input.encrypt.length(); counter++)
     {
-        MESSAGE_RES += (char) bitsumm((int) Input.ENCRYPT[i], (int) Input.KEY[i]);
+        message_res += (char) bitsumm((int) input.encrypt[counter], (int) input.key[counter]);
     }
-    return MESSAGE_RES;
+    return message_res;
 }

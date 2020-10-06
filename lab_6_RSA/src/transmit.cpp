@@ -2,28 +2,29 @@
 
 bool DEBUG_TRANSMIT = true;
 
-int transmit(int Message, data Input)
+int transmit(int message, data input)
 {
-    int Message_res, X1;
+    int message_res, step_1;
     while(true)
     {
-        cout << "[transmit]: Transmiting from A to B " << endl;
-        X1 = fastpow(Message, Input.D, Input.N);
-        cout << "[transmit]: Resolving message" << endl;
-        Message_res = fastpow(X1, Input.C, Input.N);
-        if (DEBUG_TRANSMIT == true)
+        cout << "[TRANSMIT]: Transmiting from A to B." << endl;
+        //Вычисляем промежуток для передачи
+        step_1 = fastpow(message, input.D, input.N);
+        cout << "[TRANSMIT]: Resolving message." << endl;
+        //Вычисляем сообщение
+        message_res = fastpow(step_1, input.C, input.N);
+        //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: message: " << message << endl : cout << "";
+        (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_1: " << step_1 << endl : cout << "";
+        (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: message_res: " << message_res << endl : cout << "";
+        //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        if (message_res == message)
         {
-            cout << "[DEBUG transmit]: Mess= " << Message << endl;
-            cout << "[DEBUG transmit]: X1= " << X1 << endl;
-            cout << "[DEBUG transmit]: Mess_res= " << Message_res << endl;
-        }
-        if (Message_res == Message)
-        {
-            cout << "Transmit Succesfull" << endl;
-            return Message_res;
+            cout << "[TRANSMIT]: Transmit Succesfull." << endl;
+            return message_res;
         } else {
-            cout << "Transmit failed" << endl;
-            Input = resolving(Input);
+            cout << "[TRANSMIT]: Transmit failed." << endl;
+            input = resolve(input);
         }
     }
 }

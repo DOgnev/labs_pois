@@ -3,32 +3,31 @@
 
 bool DEBUG_TRANSMIT = false;
 
-int transmit(int Message, data Input)
+int transmit(int message, data input)
 {
-    int Message_res = 1, X1 = 1;
+    int message_res = 1, step_1 = 1;
     while(true)
     {
-        Input = resolving(Input, 50);
-        Message_res = 1, 
-        X1 = 1;
-        cout << "[transmit]: Transmiting from A to B " << endl;
-        X1 = fastpow(Message, Input.D, Input.N);
-        cout << "[transmit]: Transmiting SIGN from A to B" << endl;
-        transmit_sign(Message);
-        cout << "[transmit]: Resolving message" << endl;
-        Message_res = fastpow(X1, Input.C, Input.N);
-        if (DEBUG_TRANSMIT == true)
+        input = resolve(input, 50);
+        message_res = 1, 
+        step_1 = 1;
+        cout << "[TRANSMIT]: Transmiting from A to B." << endl;
+        step_1 = fastpow(message, input.D, input.N); //Заворчиваем сообщение на передачу
+        cout << "[TRANSMIT]: Transmiting SIGN from A to B." << endl;
+        transmit_sign(message); //Передаем подпись сообщения
+        cout << "[TRANSMIT]: Resolving message." << endl;
+        message_res = fastpow(step_1, input.C, input.N); // Разворачиваем сообщения на приёме
+        //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: message: " << message << endl : cout << "";
+        (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: step_1 " << step_1 << endl : cout << "";
+        (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: message_res: " << message_res << endl : cout << "";
+        //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        if (message_res == message)
         {
-            cout << "[DEBUG transmit]: Mess= " << Message << endl;
-            cout << "[DEBUG transmit]: X1= " << X1 << endl;
-            cout << "[DEBUG transmit]: Mess_res= " << Message_res << endl;            
-        }
-        if (Message_res == Message)
-        {
-            cout << "Transmit Succesfull" << endl;
-            return Message_res;
+            cout << "[TRANSMIT]: Transmit Succesfull." << endl;
+            return message_res;
         } else {
-            cout << "Transmit failed" << endl;
+            cout << "[TRANSMIT]: Transmit failed." << endl;
         }
     }
 }

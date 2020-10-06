@@ -6,5 +6,6 @@
 
 using namespace std;
 
-int transmit(int Message, data Input);
+//Функция выполняет передачу и приём сообщения, а также проверку успешности
+int transmit(int message, data input);
 #endif

@@ -16,7 +16,7 @@ struct generator_key
     int C;
     int number;
 };
-
+//Задает строку с заданным зерном
 string generator(int seed);
 
 #endif

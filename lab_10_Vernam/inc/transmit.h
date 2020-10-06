@@ -8,11 +8,14 @@ using namespace std;
 
 struct transmiting_data
 {
-    string MESSAGE;
-    string KEY;
-    string ENCRYPT;
+    string message;
+    string key;
+    string encrypt;
 };
-transmiting_data solve_encrypt(transmiting_data INPUT);
-string solve_message(transmiting_data INPUT);
+//Функция шифрования данных
+transmiting_data solve_encrypt(transmiting_data input);
+
+//Функция расшифрования данных
+string solve_message(transmiting_data input);
 
 #endif

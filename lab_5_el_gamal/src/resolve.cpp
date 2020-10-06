@@ -3,13 +3,14 @@
 using namespace std;
 
 bool DEBUG_RESOLVE = false;
+
 //Функция проверки число на простоту
-bool simplecheck(int argument_p)
+bool simple_check(int number)
 {
-    int quotient;
-    for (int i = 2; i < argument_p; i++) 
+    if ((number % 2) == 0) return false; // Если число четное, то 
+    for (int counter = 3; counter < round(sqrt(number)); counter += 2) 
     {
-        if (argument_p % i == 0 && argument_p == i)
+        if (number % counter == 0)
         {
             return false;
         }
@@ -17,54 +18,57 @@ bool simplecheck(int argument_p)
     return true;
 };
 
-int random (int delta)
+int random(int delta)
 {
-    int Q;
+    int divisor_Q;
     srand(time(0));
-    Q = delta / 10 + (rand()%delta);
-    while(!simplecheck(Q))
+    divisor_Q = delta / 10 + (rand() % delta);
+    while(!simple_check(divisor_Q))
     {
-        Q = delta / 10 + (rand()%delta);
+        divisor_Q = delta / 10 + (rand() % delta);
     }
-    return Q;
+    return divisor_Q;
 }
 
 //Определение исходных данных
-data resolving(data Input)
+data resolve(data input)
 {
-    int Q;
-    Input.argument_p = 4;
-    while (!simplecheck(Input.argument_p))
+    int divisor_Q;
+    input.divisor = 4;
+    //Ищем пару Q и P, такие, что P = 2 * Q + 1 и P,Q - простые
+    while (!simple_check(input.divisor))
     {
         {
-            Q = random(200);
+            divisor_Q = random(200);
         }
-        Input.argument_p = 2 * Q + 1;
+        input.divisor = 2 * divisor_Q + 1;
     }
-    Input.argument_g = random(Input.argument_p - 1);
-    while (!(fastpow(Input.argument_g, Q, Input.argument_p) != 1) && (Input.argument_g < Input.argument_p - 1) && (Input.argument_g > 0))
+    //Генерируем G, пока оно не будет удовлетворять условиям 1 < G < P - 1, pow(G,Q) mod P != 1
+    input.base = random(input.divisor - 1);
+    while (!(fastpow(input.base, divisor_Q, input.divisor) != 1) && (input.base < input.divisor - 1) && (input.base > 0))
     {
-        Input.argument_g = random(Input.argument_p - 1);
+        input.base = random(input.divisor - 1);
     }
-    Input.X = (100 + rand() % Input.argument_p - 1);
-    while (!(Input.X < Input.argument_p))
+    //Генерируем X, пока оно не будет удовлетворять условию X < P - 1
+    input.X = (100 + rand() % input.divisor - 1);
+    while (!(input.X < input.divisor - 1))
     {
-        Input.X = random(Input.argument_p - 1);
+        input.X = random(input.divisor - 1);
     }
-
-    Input.Y = fastpow(Input.argument_g, Input.X, Input.argument_p);
-    Input.K = random(Input.argument_p - 1);
-    while (!(Input.K < Input.argument_p))
+    //Вычисляем Y такое, что Y = pow(G,X) mod P
+    input.Y = fastpow(input.base, input.X, input.divisor);
+    //Генерируем K, пока оно не будет удовлетворять условию K < P - 1
+    input.K = random(input.divisor - 1);
+    while (!(input.K < input.divisor))
     {
-        Input.K = random(Input.argument_p - 1);
+        input.K = random(input.divisor - 1);
     }
-    if (DEBUG_RESOLVE == true)
-    {
-        cout << "[DEBUG_RESOLVE]: P = " << Input.argument_p << endl;
-        cout << "[DEBUG_RESOLVE]: G = " << Input.argument_g << endl;
-        cout << "[DEBUG_RESOLVE]: X = " << Input.X << endl;
-        cout << "[DEBUG_RESOLVE]: Y = " << Input.Y << endl;
-        cout << "[DEBUG_RESOLVE]: K = " << Input.K << endl;
-    }
-    return Input;
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: P: " << input.divisor << endl : cout << endl;
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: G: " << input.base << endl : cout << endl;
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: X: " << input.X << endl : cout << endl;
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Y: " << input.Y << endl : cout << endl;
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: K: " << input.K << endl : cout << endl;
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    return input;
 }

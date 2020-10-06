@@ -6,5 +6,5 @@
 
 using namespace std;
 
-int get_sign(int Message, int poly);
+int get_sign(int message, int poly);
 #endif

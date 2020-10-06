@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//Вычисление остатка от деления числа а в степени х на число р
-int bitsumm(int Message, int Key);
+//Вычисление результата операции побитового сложения XOr
+int bitsumm(int message, int key);
 
 #endif

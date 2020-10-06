@@ -16,9 +16,11 @@ int main()
     cin >> divisor;
     // Вычисляем
     result = fastpow(base, index, result);
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
     (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: base= " << base << endl : cout << endl;
     (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: index= " << index << endl : cout << endl;
     (DEBUG_MAIN == true) ? cout << "[DEBUG|MAIN]: divisor= " << divisor << endl : cout << endl;
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
     cout << "[MAIN]: result = " << result << endl;  
     system("pause");
     return 0;

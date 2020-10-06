@@ -7,7 +7,9 @@
 
 using namespace std;
 
-int search_divisor(int Number);
+//Функция поиска делителя
+int search_divisor(int number);
 
-void transmit_sign(string Message);
+//Функция передачи подписи
+void transmit_sign(string message);
 #endif

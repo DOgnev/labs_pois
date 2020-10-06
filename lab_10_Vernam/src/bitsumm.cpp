@@ -2,41 +2,41 @@
 
 bool DEBUG_BITSUMM = false;
 
-//Определяем значение остатка для заданного числа
-int bitsumm(int Message, int Key)
+int bitsumm(int message, int key)
 {
-    int t = Message > Key ? Message : Key;
-    int last_bit_Message, last_bit_Key, Summ = 0, Result = 0, Q = 0;
-    while(t != 0)
+    int tmp = message > key ? message : key;
+    int last_bit_message, last_bit_key, summ = 0, result = 0, counter = 0;
+
+    //Считаем побитовую сумму двух чисел
+    while(tmp != 0)
     {
-        Summ <<= 1;
-        last_bit_Message = Message & 1;
-        last_bit_Key = Key & 1;
-        Summ += (last_bit_Message ^ last_bit_Key);   
-        if (DEBUG_BITSUMM == true)
-        {
-            cout << "[DEBUG_BITSUMM]: last_bit_m= " << last_bit_Message << endl;
-            cout << "[DEBUG_BITSUMM]: last_bit_k= " << last_bit_Key << endl;
-            cout << "[DEBUG_BITSUMM]: Summ= " << Summ << endl;
-        }
-        Message >>= 1;
-        Key >>= 1;
-        t >>= 1;
-        Q ++;
+        summ <<= 1;
+        last_bit_message = message & 1;
+        last_bit_key = key & 1;
+        summ += (last_bit_message ^ last_bit_key);
+        //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        (DEBUG_BITSUMM == true) ? cout << "[DEBUG|BITSUMM]: last_bit_message " << last_bit_message << endl : cout << "";
+        (DEBUG_BITSUMM == true) ? cout << "[DEBUG|BITSUMM]: last_bit_key " << last_bit_key << endl : cout << "";
+        (DEBUG_BITSUMM == true) ? cout << "[DEBUG|BITSUMM]: summ " << summ << endl : cout << "";
+         //--------------------СЕКЦИЯ ДЕБАГА ----------------------------// 
+        message >>= 1;
+        key >>= 1;
+        tmp >>= 1;
+        counter ++;
     }
-    while(Q != 0)
+    // Переворачиваем битовую последовательность в ответе (ответ получается зеркальным)
+    while(counter != 0)
     {
-        Result <<= 1;
-        last_bit_Message = Summ & 1;
-        Result += last_bit_Message;   
-        if (DEBUG_BITSUMM == true)
-        {
-            cout << "[DEBUG_BITSUMM]: last_bit_message= " << last_bit_Message << endl;
-            cout << "[DEBUG_BITSUMM]: Result= " << Result << endl;
-            cout << "[DEBUG_BITSUMM]: Summ= " << Summ << endl;
-        }
-        Summ >>= 1;
-        Q --;
+        result <<= 1;
+        last_bit_message = summ & 1;
+        result += last_bit_message;   
+        //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        (DEBUG_BITSUMM == true) ? cout << "[DEBUG|BITSUMM]: last_bit_message " << last_bit_message << endl : cout << "";
+        (DEBUG_BITSUMM == true) ? cout << "[DEBUG|BITSUMM]: result " << result << endl : cout << "";
+        (DEBUG_BITSUMM == true) ? cout << "[DEBUG|BITSUMM]: summ " << summ << endl : cout << "";
+         //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        summ >>= 1;
+        counter --;
     }
-    return Result;
+    return result;
 }

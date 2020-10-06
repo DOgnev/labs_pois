@@ -13,6 +13,8 @@ ext_nod_exit ext_gcd(int divisor, int number) // Функция вычисляе
         U = V;
         V = T;
     }
-    (DEBUG_EXT == true) ? cout << "[DEBUG|EXT_GDR]: U= " << U.gcd << U.divisor << U.number << endl : cout << endl;
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    (DEBUG_EXT == true) ? cout << "[DEBUG|EXT_GDR]: U= " << U.gcd <<":"<< U.divisor <<":"<< U.number << endl : cout << "";
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
     return {U.gcd,U.divisor,U.number};
 }

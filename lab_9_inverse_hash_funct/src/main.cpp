@@ -1,13 +1,14 @@
-#include "../inc/get_hash.h"
+#include "../inc/get_sign.h"
 #include <ctype.h>
 int main()
 {
-    int KEY = 13, Output;
-    string Message;
-    cout << "Enter message" << endl;
-    cin >> Message;
-    Output = get_hash(Message, KEY);
-    cout << "Hash Success: " << Output <<endl;
+    int key = 13; // Масштабирующий коэффициент
+    int output;
+    string message;
+    cout << "[MAIN]: Enter message." << endl;
+    cin >> message;
+    output = get_sign(message, key);
+    cout << "[MAIN]: Hash Success: " << output <<endl;
     system("pause");
     return 0;
 }

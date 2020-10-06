@@ -2,12 +2,11 @@
 
 int main()
 {
-    string Sequence;
-    hacked_key RESULT;
-    RESULT = hacking(take_U_seq(generator(11)));
-    cout << "Result: A " << RESULT.A << endl;
-    cout << "Result: B " << RESULT.B << endl;
-    cout << "Result: C " << RESULT.C << endl;
+    hacked_key result;
+    result = hacking(take_seq(generator(11)));
+    cout << "[MAIN]: Result: A " << result.A << endl;
+    cout << "[MAIN]: Result: B " << result.B << endl;
+    cout << "[MAIN]: Result: C " << result.C << endl;
     system("pause");
     return 0;
 }

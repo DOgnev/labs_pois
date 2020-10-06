@@ -3,16 +3,16 @@
 
 int main()
 {
-    data Input;
-    string Message, Output = "Output = ";
-    Input = resolving(Input);
-    cout << "Enter message" << endl;
-    cin >> Message;
-    for (int i = 0; i < Message.length(); i++)
+    data input;
+    string message, output = "Output = ";
+    input = resolve(input);
+    cout << "[MAIN]: Enter message." << endl;
+    cin >> message;
+    for (int counter = 0; counter < message.length(); counter++)
     {
-        Output += decrypt(transmit(encrypt(Message[i]),Input));
+        output += decrypt(transmit(encrypt(message[counter]),input));
     }
-    cout << "Transmition success = " << Output <<endl;
+    cout << "[MAIN]: Transmition success: " << output <<endl;
     system("pause");
     return 0;
 }

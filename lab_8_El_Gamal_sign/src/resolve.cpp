@@ -1,13 +1,14 @@
 #include "../inc/resolve.h"
 
 bool DEBUG_RESOLVE = false;
+
 //Функция проверки число на простоту
-bool simplecheck(int argument_p)
+bool simple_check(int number)
 {
-    int quotient;
-    for (int i = 2; i < argument_p; i++) 
+    if ((number % 2) == 0) return false; // Если число четное, то 
+    for (int counter = 3; counter < round(sqrt(number)); counter += 2) 
     {
-        if (argument_p % i == 0)
+        if (number % counter == 0)
         {
             return false;
         }
@@ -15,62 +16,66 @@ bool simplecheck(int argument_p)
     return true;
 };
 
-int random (int delta)
+int random(int delta)
 {
     mt19937 gen(time(0));
-    uniform_int_distribution<> dist(4,delta);
-    int Q = 4;
-    while(!simplecheck(Q))
+    uniform_int_distribution<> dist(delta/2,delta); // Определяем диапазон значений
+    int divisor_q = 4;
+    // Крутим генератор, пока не находим простое Q
+    while(!simple_check(divisor_q))
     {
-        Q = dist(gen);
+        divisor_q = dist(gen);
     }
-    return Q;
+    return divisor_q;
 }
 
 //Определение исходных данных
-data resolving(data Input, int delta)
+data resolve(data input, int delta)
 {
-    
-    while (!(Input.K_inv > 1))
+    while (!(input.K_inv > 1))
     {
-        Input = {4,4,1,1,1,1,1};
-        ext_nod_exit Invertion;
-        Input.argument_p = 4;
-        while (!simplecheck(Input.argument_p))
+        input = {4,4,1,1,1,1,1};
+        ext_nod_exit invertion;
+        input.divisor_p = 4;
+        //Ищем пару Q и P, такие, что P = 2 * Q + 1 и P,Q - простые
+        while (!simple_check(input.divisor_p))
         {
             {
-                Input.argument_q = random(delta);
+                input.divisor_q = random(delta);
             }
-            Input.argument_p = 2 * Input.argument_q + 1;
+            input.divisor_p = 2 * input.divisor_q + 1;
         }
-        Input.G = random(Input.argument_p - 1);
-        while (!(fastpow(Input.G, Input.argument_q, Input.argument_p) != 1) && (Input.G < Input.argument_p - 1) && (Input.G > 0))
+        //Расчитываем G, такое, что pow(G,Q) mod P != 1 и 0 < G < P - 1
+        input.G = random(input.divisor_p - 1);
+        while (!(fastpow(input.G, input.divisor_q, input.divisor_p) != 1) && (input.G < input.divisor_p - 1) && (input.G > 0))
         {
-            Input.G = random(Input.argument_p - 1);
+            input.G = random(input.divisor_p - 1);
         }
-        Input.X = random(Input.argument_p);
-        while (!(Input.X < Input.argument_p))
+        input.X = random(input.divisor_p);
+        while (!(input.X < input.divisor_p))
         {
-        Input.X = random(Input.argument_p);
+            input.X = random(input.divisor_p);
         }
-        Input.Y = fastpow(Input.G, Input.X, Input.argument_p);
-        Input.K = random(Input.argument_p - 1);
-        while (!( (Invertion.NOD == 1) && (Input.K < Input.argument_p-1) && (Input.K > 0)))
+        //Расчитываем Y, такое, что Y = pow(G,X) mod P
+        input.Y = fastpow(input.G, input.X, input.divisor_p);
+        //Ищем K, такое, что gcd(K,P - 1) = 1 и 0 < K < P - 1
+        input.K = random(input.divisor_p - 1);
+        while (!( (invertion.gcd == 1) && (input.K < input.divisor_p - 1) && (input.K > 0)))
         {
-            Input.K = random(Input.argument_p-1);
-            Invertion = ext_nod(Input.argument_p-1, Input.K);
+            input.K = random(input.divisor_p - 1);
+            invertion = ext_gcd(input.divisor_p - 1, input.K);
         }
-        Input.K_inv = Invertion.y < 0 ? (Invertion.y + Input.argument_p-1) : Invertion.y;
+        //Ищем K_inv, такое, что K_inv * K mod P = 1
+        input.K_inv = invertion.number_invertion < 0 ? (invertion.number_invertion + input.divisor_p - 1) : invertion.number_invertion;
     }
-    if (DEBUG_RESOLVE == true)
-    {
-        cout << "[DEBUG_RESOLVE]: P = " << Input.argument_p << endl;
-        cout << "[DEBUG_RESOLVE]: Q = " << Input.argument_q << endl;
-        cout << "[DEBUG_RESOLVE]: G= " << Input.G << endl;
-        cout << "[DEBUG_RESOLVE]: X = " << Input.X << endl;
-        cout << "[DEBUG_RESOLVE]: Y = " << Input.Y << endl;
-        cout << "[DEBUG_RESOLVE]: K = " << Input.K << endl;
-        cout << "[DEBUG_RESOLVE]: K_inv = " << Input.K_inv << endl;
-    }
-    return Input;
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: P: " << input.divisor_p << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Q: " << input.divisor_q << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: G: " << input.G << endl : cout << endl;
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: X: " << input.X << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: Y: " << input.Y << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: K: " << input.K << endl : cout << "";
+    (DEBUG_RESOLVE == true) ? cout << "[DEBUG|RESOLVE]: K_inv: " << input.K_inv << endl : cout << "";
+    //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+    return input;
 }

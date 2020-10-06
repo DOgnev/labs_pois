@@ -1,25 +1,25 @@
 #include "../inc/transmit.h"
 int main()
 {
-    transmiting_data Input;
+    transmiting_data input;
     string resived_message;
-    cout << "Enter Message" << endl;
-    cin >> Input.MESSAGE;
-    cout << "Transmiting" << endl;
-    Input.KEY = sequence_creator(Input.MESSAGE.length());
-    cout << "KEY: " << Input.KEY << endl;
-    Input = solve_encrypt(Input);
-    cout << "ENCRYPT: " << Input.ENCRYPT << endl;
-    resived_message = solve_message(Input);
-    if (resived_message == Input.MESSAGE)
+    cout << "[MAIN]: Enter Message." << endl;
+    cin >> input.message;
+    cout << "[MAIN]: Transmiting." << endl;
+    input.key = prevalidation(input.message.length());
+    cout << "[MAIN]: key: " << input.key << endl;
+    input = solve_encrypt(input);
+    cout << "[MAIN]: encrypt: " << input.encrypt << endl;
+    resived_message = solve_message(input);
+    if (resived_message == input.message)
     {
-        cout << "Transmiting success" << endl;
+        cout << "[MAIN]: Transmiting success." << endl;
     } else 
     {
-        cout << "Transmiting failed" << endl;
+        cout << "[MAIN]: Transmiting failed." << endl;
     }
-    cout << "Transmited message: " << Input.MESSAGE << endl;
-    cout << "Recived message: " << resived_message << endl; 
+    cout << "[MAIN]: Transmited message: " << input.message << endl;
+    cout << "[MAIN]: Recived message: " << resived_message << endl; 
     system("pause");
     return 0;
 }

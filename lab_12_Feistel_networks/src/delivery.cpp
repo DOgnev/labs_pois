@@ -4,17 +4,17 @@
 bool DEBUG_DELIVERY = false;
 int round_range = 5;
 
-int str_to_int(string str)
+int str_to_int(string string)
 {
-    stringstream sstr;
-    int int_val;
-    if (str.empty())
+    stringstream stream_string;
+    int integer_value;
+    if (string.empty())
     {
         return 0;
     }
-    sstr << str;
-    sstr >> int_val;
-    return int_val;
+    stream_string << string;
+    stream_string >> integer_value;
+    return integer_value;
 }
 
 int solve_left(int curent_left, int curent_right)

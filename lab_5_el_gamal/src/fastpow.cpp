@@ -1,28 +1,29 @@
 #include "../inc/fastpow.h"
 
-bool DEBUG_FASTPOW = false;
+bool DEBUG_FASTPOW = false; // Чекер для дебага
 
-//Определяем значение остатка для заданного числа
-int fastpow(int argument_a, int argument_x, int argument_p)
+//Определяем значение выражения base^index mod divisor.
+int fastpow(int base, int index, int divisor)
 {
     int last_bit;
-    int y = 1;
-    int s = argument_a;
-   while(argument_x != 0)
+    int curent_result = 1;
+    int curent_multiplier = base;
+   while(index != 0)
     {
-        last_bit = argument_x&1;
-        if (last_bit == 1) 
+        last_bit = index & 1; // Забираем последний бит
+        if (last_bit == 1) //Получаем остаток от деления текущего разряда двоичного числа
         {
-            y = (y*s) % argument_p;
+            curent_result *= curent_multiplier;
+            curent_result %= divisor;
         }
-        s = (s*s) % argument_p;
-        if (DEBUG_FASTPOW == true)
-        {
-            cout << "[DEBUG_FASTPOW fastpow]: lb= " << last_bit << endl;
-            cout << "[DEBUG_FASTPOW fastpow]: y= " << y << endl;
-            cout << "[DEBUG_FASTPOW fastpow]: s= " << s << endl;
-        }
-        argument_x = argument_x >> 1;
+        curent_multiplier *= curent_multiplier; 
+        curent_multiplier %= divisor;
+        //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: last_bit= " << last_bit << endl : cout << "";
+        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: curent_multiplier= " << curent_multiplier << endl : cout << "";
+        (DEBUG_FASTPOW == true) ? cout << "[DEBUG|FASTPOW]: curent_result= " << curent_result << endl : cout << "";
+        //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
+        index >>= 1; // Битовый сдвиг на 1 разряд вправо
     }
-    return y;
+    return curent_result;
 }

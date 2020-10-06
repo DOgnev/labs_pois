@@ -2,7 +2,7 @@
 
 using namespace std;
 
-bool DEBUG_RESOLVE = false;
+bool DEBUG_RESOLVE = true;
 
 //Функция проверки число на простоту
 bool simple_check(int number)

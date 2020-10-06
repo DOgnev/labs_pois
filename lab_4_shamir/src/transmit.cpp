@@ -19,11 +19,11 @@ int transmit(int message, data input)
 
         if (DEBUG_TRANSMIT == true)
         {
-            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: message: " << message << endl : cout << endl;
-            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_1: " << step_1 << endl : cout << endl;
-            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_2: " << step_2 << endl : cout << endl;
-            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_3: " << step_3 << endl : cout << endl;
-            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_4: " << step_4 << endl : cout << endl;
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: message: " << message << endl : cout << "";
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_1: " << step_1 << endl : cout << "";
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_2: " << step_2 << endl : cout << "";
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_3: " << step_3 << endl : cout << "";
+            (DEBUG_TRANSMIT == true) ? cout << "[DEBUG|TRANSMIT]: step_4: " << step_4 << endl : cout << "";
         }
 
         if (step_4 == message)

@@ -19,7 +19,7 @@ bool simple_check(int number)
 int random(int delta)
 {
     mt19937 gen(time(0));
-    uniform_int_distribution<> dist(delta/2,delta); // Определяем диапазон значений
+    uniform_int_distribution<> dist(2, delta); // Определяем диапазон значений
     int divisor_q = 4;
     // Крутим генератор, пока не находим простое Q
     while(!simple_check(divisor_q))

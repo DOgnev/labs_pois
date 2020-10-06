@@ -1,4 +1,4 @@
-#include "../inc/ext_gdr.h"
+#include "../inc/ext_gcd.h"
 
 int main()
 {
@@ -9,9 +9,9 @@ int main()
     cin >> number;
     cout << "[MAIN]: Enter divisor." << endl;
     cin >> divisor;
-    if (number > 0 && divisor > 0) result = ext_gcd(number, divisor);
+    if (number > 0 && divisor > 0) result = ext_gcd(divisor, number);
     else cout << "[ERROR]: number or divisor must be more than 0." << endl;
-    result.gcd == 0 ? cout << "[ERROR]: divisor must be less than number." << endl : cout << "[MAIN]: number_invertion= "<< result.number_invertion << endl;
+    result.gcd == 0 ? cout << "[ERROR]: divisor must be more than number." << endl : cout << "[MAIN]: number_invertion= "<< result.number_invertion << endl;
     system("pause");
     return 0;
 }

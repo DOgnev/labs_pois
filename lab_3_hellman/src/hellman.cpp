@@ -56,11 +56,11 @@ data resolve(data input)
         input.Xb = random(input.divisor) * 2;
     }
     //Вычисляем Ya,Yb такое, что Y = pow(G,X) mod P
-    input.Ya = fastpow(input.base,input.Xa,input.divisor);
-    input.Yb = fastpow(input.base,input.Xb,input.divisor);
+    input.Ya = fastpow(input.base, input.Xa, input.divisor);
+    input.Yb = fastpow(input.base, input.Xb, input.divisor);
     //Вычисляем Za,Zb такое, что Z = pow(Y,X) mod P
-    input.Za = fastpow(input.Yb,input.Xa,input.divisor);
-    input.Zb = fastpow(input.Ya,input.Xb,input.divisor);
+    input.Za = fastpow(input.Yb, input.Xa, input.divisor);
+    input.Zb = fastpow(input.Ya, input.Xb, input.divisor);
 
     return input;
 }

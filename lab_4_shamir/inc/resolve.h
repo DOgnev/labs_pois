@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "fastpow.h"
-#include "ext_gdr.h"
+#include "ext_gcd.h"
 
 using namespace std;
 //Структура данных

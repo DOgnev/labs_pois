@@ -17,7 +17,7 @@ int search_divisor(int number)
 void transmit_sign(string message)
 {   
     data input_sign = {4,4,1,1,1,1};
-    input_sign = resolve(input_sign, 50);
+    input_sign = resolve(input_sign, 500);
     int key = 13; // Масштаб подписи
     int S1 = 1, S2 = 1, sign = 1, sign_res = 1, step_1 = 1;
     cout << "[TRANSMIT_SIGN]: Transmiting SIGN." << endl;

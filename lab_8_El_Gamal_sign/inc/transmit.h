@@ -4,6 +4,8 @@
 #include "fastpow.h"
 #include "resolve.h"
 #include "get_sign.h"
+#include "windows.h"
+#include <ctime>
 
 using namespace std;
 

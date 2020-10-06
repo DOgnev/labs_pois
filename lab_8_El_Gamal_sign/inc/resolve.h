@@ -24,9 +24,9 @@ struct data
 bool simple_check(int number);
 
 //Функция рандомного числа
-int random (int delta);
+int random(int delta);
 
 //Определение исходных данных
-data resolve (data input, int delta);
+data resolve(data input, int delta);
 
 #endif

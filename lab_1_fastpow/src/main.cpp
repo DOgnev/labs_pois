@@ -1,6 +1,6 @@
-#include "../inc/fastpow.h"
+﻿#include "../inc/fastpow.h"
 
-bool DEBUG_MAIN = true; // чекер дебага
+bool DEBUG_MAIN = false; // чекер дебага
 
 int main()
 {

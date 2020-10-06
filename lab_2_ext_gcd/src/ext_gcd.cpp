@@ -1,4 +1,4 @@
-#include "../inc/ext_gdr.h"
+#include "../inc/ext_gcd.h"
 
 bool DEBUG_EXT = false; // Чекер дебага
  

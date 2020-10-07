@@ -13,4 +13,6 @@ int main()
     } else {
         cout << "[MAIN] Transmiting failed." << endl;
     }
+    system("pause");
+    return 0;
 }

@@ -90,9 +90,9 @@ void transmit_sign(string message)
                     (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: tmp: " << tmp << endl : cout << "";
                     (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: step_1: " << step_1 << endl : cout << "";
                     (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << sign_res << endl : cout << "";
-                    (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << S1 << endl : cout << "";
-                    (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << S2 << endl : cout << "";
-                    (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << input_sign.divisor_p << endl : cout << "";
+                    (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: S1: " << S1 << endl : cout << "";
+                    (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: S2: " << S2 << endl : cout << "";
+                    (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: divisor_p: " << input_sign.divisor_p << endl : cout << "";
                     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
                 }
             }

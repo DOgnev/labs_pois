@@ -13,8 +13,6 @@ int transmit(int message, data input)
         step_1 = 1;
         cout << "[TRANSMIT]: Transmiting from A to B." << endl;
         step_1 = fastpow(message, input.D, input.N); //Заворчиваем сообщение на передачу
-        cout << "[TRANSMIT]: Transmiting SIGN from A to B." << endl;
-        transmit_sign(message); //Передаем подпись сообщения
         cout << "[TRANSMIT]: Resolving message." << endl;
         message_res = fastpow(step_1, input.C, input.N); // Разворачиваем сообщения на приёме
         //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//

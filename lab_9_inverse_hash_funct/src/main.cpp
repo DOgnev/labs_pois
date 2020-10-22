@@ -2,7 +2,7 @@
 #include <ctype.h>
 int main()
 {
-    int key = 13; // Масштабирующий коэффициент
+    int key = 21; // Масштабирующий коэффициент
     int output;
     string message;
     cout << "[MAIN]: Enter message." << endl;

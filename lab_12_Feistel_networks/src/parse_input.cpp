@@ -7,6 +7,7 @@ string parse_input_block(string input)
     string tmp = "";
     string resolve = "";
     const int block_length = 8;
+    //Проверка неполной строки
     if (!(input.length() % block_length == 0))
     {
         for (int counter = 0; counter < (input.length() % block_length); counter++)
@@ -19,6 +20,7 @@ string parse_input_block(string input)
     int block_id = 0;
     int sym_id = 0;
     string block_data = "";
+    //Цикл распила строки на блоки
     while (!((input[sym_id] == '!') && (sym_id % block_length == 0)))
     {
         for (int block_sym_id = 0; block_sym_id < block_length; block_sym_id++)

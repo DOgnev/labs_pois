@@ -3,11 +3,10 @@
 bool DEBUG_SIGN = false;
 
 //Поиск значения обратного хэша.
-int get_sign(int message, int poly)
+int get_sign(string message, int poly)
 {
-    string in = to_string(message);
-    char input[in.length()]; 
-    strcpy(input, in.c_str());
+    char input[message.length()]; 
+    strcpy(input, message.c_str());
     int length = strlen(input);
     int hash[length];
     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
@@ -21,5 +20,5 @@ int get_sign(int message, int poly)
     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
     (DEBUG_SIGN == true) ? cout << "[DEBUG|SIGN]: hash: " << hash[length - 1]  << endl : cout << "";
     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
-    return hash[length-1];         
+    return hash[length-1] % (int) pow(2,18);         
 }

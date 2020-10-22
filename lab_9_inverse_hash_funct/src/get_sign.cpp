@@ -20,5 +20,5 @@ int get_sign(string message, int poly)
     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
     (DEBUG_SIGN == true) ? cout << "[DEBUG|SIGN]: hash: " << hash[length - 1]  << endl : cout << "";
     //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
-    return hash[length-1];         
+    return hash[length-1] % (int) pow(2,30);         
 }

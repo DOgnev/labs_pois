@@ -3,8 +3,9 @@
 
 #include <cstring>
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
-int get_sign(int message, int poly);
+int get_sign(string message, int poly);
 #endif

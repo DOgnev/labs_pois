@@ -33,7 +33,7 @@ void transmit_sign(string message)
             S1 = fastpow(input_sign.G, input_sign.K, input_sign.divisor_p);
             S2 = ((tmp - input_sign.X * S1) * input_sign.K_inv) % (input_sign.divisor_p - 1);
             (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: S1: " << S1 << endl : cout << "";
-            S2 = S2 < 0 ? S2 + input_sign.divisor_p - 1 : S2;
+            S2 = S2 < 0 ? S2 + (input_sign.divisor_p - 1) : S2;
             (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: S2: " << S2 << endl : cout << "";
             cout << "[TRANSMIT_SIGN]: Resolving SIGN." << endl;
             sign_res = (fastpow(input_sign.Y, S1, input_sign.divisor_p) * fastpow(S1, S2, input_sign.divisor_p)) % input_sign.divisor_p;
@@ -41,6 +41,8 @@ void transmit_sign(string message)
             if (sign_res == step_1)
             {
                 cout << "[TRANSMIT_SIGN]: SIGN transmit success" << endl;
+                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << sign_res << endl : cout << "";
+                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_exp: " << step_1 << endl : cout << "";
             } else 
             {
                 cout << "[TRANSMIT_SIGN]: SIGN transmit failed" << endl;
@@ -51,9 +53,9 @@ void transmit_sign(string message)
                 (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: tmp: " << tmp << endl : cout << "";
                 (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: step_1: " << step_1 << endl : cout << "";
                 (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << sign_res << endl : cout << "";
-                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << S1 << endl : cout << "";
-                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << S2 << endl : cout << "";
-                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << input_sign.divisor_p << endl : cout << "";
+                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: S1: " << S1 << endl : cout << "";
+                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: S2: " << S2 << endl : cout << "";
+                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: P: " << input_sign.divisor_p << endl : cout << "";
                 //--------------------СЕКЦИЯ ДЕБАГА ----------------------------//
             }
             tmp /= input_sign.divisor_p;
@@ -80,6 +82,8 @@ void transmit_sign(string message)
                 if (sign_res == step_1)
                 {
                     cout << "[TRANSMIT_SIGN]: SIGN transmit success" << endl;
+                    (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_res: " << sign_res << endl : cout << "";
+                    (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: sign_exp: " << step_1 << endl : cout << "";
                 } else 
                 {
                     cout << "[TRANSMIT_SIGN]: SIGN transmit failed" << endl;

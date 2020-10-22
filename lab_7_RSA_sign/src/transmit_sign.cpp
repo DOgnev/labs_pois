@@ -1,6 +1,6 @@
 #include "../inc/transmit_sign.h"
 
-bool DEBUG_TRANSMIT_SIGN = false;
+bool DEBUG_TRANSMIT_SIGN = true;
 
 int search_divisor(int number)
 {
@@ -14,7 +14,7 @@ int search_divisor(int number)
     return number;
 }
 
-void transmit_sign(int message)
+void transmit_sign(string message)
 {   
     data input_sign = {4,4,1,1,1,1};
     input_sign = resolve(input_sign, 50);
@@ -34,6 +34,8 @@ void transmit_sign(int message)
             int step_2 = fastpow(step_1, input_sign.C, input_sign.N); //Разворачиваем подпись на приёме
             sign_res *= step_2;
             tmp /= input_sign.N;
+            (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: N: " << input_sign.N << endl : cout << "";
+
         } else if (tmp >= input_sign.N)
         {
             //Ищем делитель для передачи
@@ -42,7 +44,8 @@ void transmit_sign(int message)
             if (divisor == tmp)
             {
                 input_sign = {4,4,1,1,1,1};
-                input_sign = resolve(input_sign, tmp);
+                input_sign = resolve(input_sign,(int) round(sqrt(tmp)));
+                (DEBUG_TRANSMIT_SIGN == true) ? cout << "[DEBUG|TRANSMIT_SIGN]: N: " << input_sign.N << endl : cout << "";
                 divisor = 1;
             } else 
             {

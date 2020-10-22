@@ -4,6 +4,7 @@
 #include "fastpow.h"
 #include "resolve.h"
 #include "get_sign.h"
+#include <string>
 
 using namespace std;
 
@@ -11,5 +12,5 @@ using namespace std;
 int search_divisor(int number);
 
 //Функция передачи подписи
-void transmit_sign(int message);
+void transmit_sign(string message);
 #endif
